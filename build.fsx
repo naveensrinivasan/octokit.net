@@ -142,13 +142,13 @@ Target "CreateOctokitPackage" (fun _ ->
 
     NuGet (fun p -> 
         {p with
-            Authors = authors
+            Authors = authors 
             Project = projectName
             Description = projectDescription
             OutputPath = packagingRoot
             Summary = projectSummary
             WorkingDir = packagingDir
-            Version = releaseNotes.AssemblyVersion
+            Version = releaseNotes.AssemblyVersion + "-beta"
             ReleaseNotes = toLines releaseNotes.Notes
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey" }) "octokit.nuspec"
@@ -194,6 +194,7 @@ Target "CreatePackages" DoNothing
    ==> "CheckProjects"
    ==> "BuildXSApp"
 
+
 "UnitTests"
    ==> "Default"
 
@@ -205,11 +206,10 @@ Target "CreatePackages" DoNothing
 
 "SourceLink"
    ==> "CreatePackages"
+
 "CreateOctokitPackage"
    ==> "CreatePackages"
 "CreateOctokitReactivePackage"
    ==> "CreatePackages"
-
-
 
 RunTargetOrDefault "Default"
