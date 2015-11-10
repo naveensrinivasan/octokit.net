@@ -26,10 +26,11 @@ namespace Octokit
         /// <returns>
         /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
         /// </returns>
-        public async Task<IReadOnlyList<RepositoryContent>> GetAllContents(string owner, string name, string path)
+        public async Task<IReadOnlyList<RepositoryContent>> GetAllContentsBypath(string owner, string name, string path)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            Ensure.ArgumentNotNullOrEmptyString(name, "path");
 
             var url = ApiUrls.RepositoryContent(owner, name, path);
 
@@ -50,10 +51,11 @@ namespace Octokit
         /// <returns>
         /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
         /// </returns>
-        public async Task<IReadOnlyList<RepositoryContent>> GetAllContents(string owner, string name, string path, string reference)
+        public async Task<IReadOnlyList<RepositoryContent>> GetAllContentsBypath(string owner, string name, string path, string reference)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            Ensure.ArgumentNotNullOrEmptyString(path, "path");
             Ensure.ArgumentNotNullOrEmptyString(reference, "reference");
 
             var url = ApiUrls.RepositoryContent(owner, name, path, reference);
@@ -61,6 +63,25 @@ namespace Octokit
             return await ApiConnection.GetAll<RepositoryContent>(url);
         }
 
+       /// <summary>
+       /// Returns the contents of a root directory in a repository.
+       /// </summary>
+       /// <param name="owner">The owner of the repository</param>
+       /// <param name="name">The name of the repository</param>
+       /// <param name="reference">The name of the commit/branch/tag. Default: the repository's default branch (usually master)</param>
+       /// <returns>
+       /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
+       /// </returns>
+       public async Task<IReadOnlyList<RepositoryContent>> GetAllContentsByRef(string owner, string name, string reference)
+        {
+            Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
+            Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            Ensure.ArgumentNotNullOrEmptyString(reference, "reference");
+
+            var url = ApiUrls.RepositoryContent(owner, name, string.Empty, reference);
+
+            return await ApiConnection.GetAll<RepositoryContent>(url);
+        }
         /// <summary>
         /// Gets the preferred README for the specified repository.
         /// </summary>
@@ -83,7 +104,7 @@ namespace Octokit
         }
 
         /// <summary>
-        /// Gets the perferred README's HTML for the specified repository.
+        /// Gets the preferred README's HTML for the specified repository.
         /// </summary>
         /// <remarks>
         /// See the <a href="http://developer.github.com/v3/repos/contents/#get-the-readme">API documentation</a> for more information.

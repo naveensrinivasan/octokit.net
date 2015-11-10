@@ -154,7 +154,7 @@ namespace Octokit.Reactive
         /// <returns>
         /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
         /// </returns>
-        public IObservable<RepositoryContent> GetAllContents(string owner, string name, string path)
+        public IObservable<RepositoryContent> GetAllContentsBypath(string owner, string name, string path)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
@@ -198,7 +198,7 @@ namespace Octokit.Reactive
         /// <returns>
         /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
         /// </returns>
-        public IObservable<RepositoryContent> GetAllContents(string owner, string name, string path, string reference)
+        public IObservable<RepositoryContent> GetAllContentsBypath(string owner, string name, string path, string reference)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
@@ -208,6 +208,23 @@ namespace Octokit.Reactive
             return _client.Connection.GetAndFlattenAllPages<RepositoryContent>(ApiUrls.RepositoryContent(owner, name, path, reference));
         }
 
+        /// <summary>
+        /// Returns the contents of a root directory in a repository.
+        /// </summary>
+        /// <param name="owner">The owner of the repository</param>
+        /// <param name="name">The name of the repository</param>
+        /// <param name="reference">The name of the commit/branch/tag. Default: the repository’s default branch (usually master)</param>
+        /// <returns>
+        /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
+        /// </returns>
+        public IObservable<RepositoryContent>GetAllContentsByRef(string owner, string name, string reference)
+        {
+            Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
+            Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            Ensure.ArgumentNotNullOrEmptyString(reference, "reference");
+
+            return _client.Connection.GetAndFlattenAllPages<RepositoryContent>(ApiUrls.RepositoryContent(owner, name, string.Empty, reference));
+        }
         /// <summary>
         /// Creates a commit that creates a new file in a repository.
         /// </summary>

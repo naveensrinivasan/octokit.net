@@ -23,7 +23,7 @@ namespace Octokit
         /// <returns>
         /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
         /// </returns>
-        Task<IReadOnlyList<RepositoryContent>> GetAllContents(string owner, string name, string path);
+        Task<IReadOnlyList<RepositoryContent>> GetAllContentsBypath(string owner, string name, string path);
 
         /// <summary>
         /// Returns the contents of a file or directory in a repository.
@@ -39,7 +39,18 @@ namespace Octokit
         /// <returns>
         /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
         /// </returns>
-        Task<IReadOnlyList<RepositoryContent>> GetAllContents(string owner, string name, string path, string reference);
+        Task<IReadOnlyList<RepositoryContent>> GetAllContentsBypath(string owner, string name, string path, string reference);
+
+        /// <summary>
+        /// Returns the contents of a root directory in a repository.
+        /// </summary>
+        /// <param name="owner">The owner of the repository</param>
+        /// <param name="name">The name of the repository</param>
+        /// <param name="reference">The name of the commit/branch/tag. Default: the repository's default branch (usually master)</param>
+        /// <returns>
+        /// A collection of <see cref="RepositoryContent"/> representing the content at the specified path
+        /// </returns>
+        Task<IReadOnlyList<RepositoryContent>>GetAllContentsByRef(string owner, string name, string reference);
 
         /// <summary>
         /// Gets the preferred README for the specified repository.
@@ -54,7 +65,7 @@ namespace Octokit
         Task<Readme> GetReadme(string owner, string name);
 
         /// <summary>
-        /// Gets the perferred README's HTML for the specified repository.
+        /// Gets the preferred README's HTML for the specified repository.
         /// </summary>
         /// <remarks>
         /// See the <a href="http://developer.github.com/v3/repos/contents/#get-the-readme">API documentation</a> for more information.
