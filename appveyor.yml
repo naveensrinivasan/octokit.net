@@ -4,4 +4,7 @@ build_script:
   - cmd: build.cmd BuildApp
   - cmd: build.cmd UnitTests
   - cmd: build.cmd ConventionTests
+  - cmd: build.cmd CreatePackages
 test: off
+artifacts:
+- path: '**\octokit*.nupkg'
