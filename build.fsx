@@ -100,7 +100,7 @@ Target "BuildApp" (fun _ ->
 )
 
 Target "BuildXSApp" (fun _ ->
-    build setParams "./Octokit-XamarinStudio.sln"
+    build setParams "./Octokit-Mono.sln"
         |> DoNothing
 )
 Target "ConventionTests" (fun _ ->
