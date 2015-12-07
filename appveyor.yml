@@ -1,7 +1,12 @@
 init:
   - git config --global core.autocrlf input
 build_script:
-  - cmd: build.cmd BuildApp
+  - cmd: build.cmd CreatePackages
   - cmd: build.cmd UnitTests
   - cmd: build.cmd ConventionTests
 test: off
+nuget:
+  account_feed: true
+  project_feed: true
+artifacts:
+- path: '**\octokit*.nupkg'
