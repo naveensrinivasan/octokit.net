@@ -1,12 +1,13 @@
 <Query Kind="Program">
+  <Reference Relative="..\..\Octokit\bin\Release\Net45\Octokit.dll">C:\n\Documents\GitHub\octokit.net\Octokit\bin\Release\Net45\Octokit.dll</Reference>
   <Reference>&lt;RuntimeDirectory&gt;\System.Net.Http.dll</Reference>
   <Reference>&lt;RuntimeDirectory&gt;\System.Runtime.dll</Reference>
   <NuGetReference>Octokit</NuGetReference>
   <NuGetReference>Octokit.Reactive</NuGetReference>
   <NuGetReference>Rx-Main</NuGetReference>
-  <Namespace>System.Reactive.Linq</Namespace>
-  <Namespace>System.Net.Http.Headers</Namespace>
   <Namespace>Octokit</Namespace>
+  <Namespace>System.Net.Http.Headers</Namespace>
+  <Namespace>System.Reactive.Linq</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
