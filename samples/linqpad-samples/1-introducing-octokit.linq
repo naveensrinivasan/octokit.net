@@ -1,4 +1,5 @@
 <Query Kind="Program">
+  <Reference Relative="..\..\Octokit\bin\Release\Net45\Octokit.dll">C:\n\Documents\GitHub\octokit.net\Octokit\bin\Release\Net45\Octokit.dll</Reference>
   <NuGetReference>Octokit</NuGetReference>
   <NuGetReference>Octokit.Reactive</NuGetReference>
   <NuGetReference>Rx-Main</NuGetReference>
