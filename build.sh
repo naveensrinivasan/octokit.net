@@ -14,6 +14,5 @@ mono "./tools/nuget/nuget.exe" "install" "FAKE.Core" "-OutputDirectory" "tools" 
 mono "./tools/nuget/nuget.exe" "install" "SourceLink.Fake" "-OutputDirectory" "tools" "-ExcludeVersion" "-version" "1.1.0"
 mono "./tools/nuget/nuget.exe" "install" "System.Net.Http" "-OutputDirectory" "tools" 
 mono "./tools/nuget/nuget.exe" "install" "Microsoft.Net.Http" "-OutputDirectory" "tools" 
-
-  mono ./tools/FAKE.Core/tools/FAKE.exe $@ --fsiargs -d:MONO build.fsx 
+mono ./tools/FAKE.Core/tools/FAKE.exe $@ --fsiargs -d:MONO build.fsx 
 fi
