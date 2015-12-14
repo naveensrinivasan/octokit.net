@@ -104,10 +104,8 @@ Target "BuildApp" (fun _ ->
 )
 
 Target "BuildMono" (fun _ ->
-    // xbuild does not support msbuild  tools version 14.0 and that is the reason
-    // for using the xbuild command directly instead of using msbuild
-    Exec "xbuild" "./Octokit-Mono.sln /t:Build /tv:12.0 /v:m  /p:RestorePackages='False' /p:Configuration='Release' /logger:Fake.MsBuildLogger+ErrorLogger,'../octokit.net/tools/FAKE.Core/tools/FakeLib.dll'"
-
+    build setParams "./Octokit-Mono.sln"
+        |> DoNothing
 )
 Target "ConventionTests" (fun _ ->
     !! (sprintf "./Octokit.Tests.Conventions/bin/%s/**/Octokit.Tests.Conventions.dll" buildMode)
